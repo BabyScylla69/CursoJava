@@ -47,13 +47,5 @@ public class RepasoCosteViaje {
 
         int sumaCostes = costeHotel + costeAvion + costeCoche;
         System.out.println("Coste total: " + sumaCostes);
-
-        int fact = 4;
-        int result = 1;
-
-        for(int i = 1; i<fact; i++)
-        {
-            result *= i;
-        }
     }
 }
