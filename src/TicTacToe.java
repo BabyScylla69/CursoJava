@@ -9,6 +9,10 @@ public class TicTacToe {
     {
         return new String[]{" ", " ", " ", " ", " ", " ", " ", " ", " "};
     }
+    public boolean checkFreeSpot(int pos, String[] positions)
+    {
+        return !positions[pos-1].equals(" ");
+    }
     public void printField(String[] pos, int player)
     {
         System.out.println("Introduzca una posicion jugador " + player +"\n");
@@ -17,15 +21,6 @@ public class TicTacToe {
         System.out.println(" " + pos[3] + " | " + pos[4] + " | " + pos[5] + "       4 | 5 | 6");
         System.out.println("-----------     -----------");
         System.out.println(" " + pos[6] + " | " + pos[7] + " | " + pos[8] + "       7 | 8 | 9");
-    }
-    public boolean checkFreeSpot(int pos, String[] positions)
-    {
-        if (!positions[pos-1].equals(" "))
-        {
-            System.out.println("Posicion invalida, vuelva a intentarlo");
-            return false;
-        }
-        return true;
     }
     public String[] handleInput(int pos, int player, String[] positions)
     {
@@ -38,52 +33,25 @@ public class TicTacToe {
     }
     public int winCondition(String[] positions, int player)
     {
-        int count = 0;
-        if (player == 1)
+        String check = player == 1? "X": "O";
+
+        if(positions[0].equals(check))
         {
-            if(positions[0].equals("X"))
-            {
-                if (positions[1].equals("X") && positions[2].equals("X") || positions[4].equals("X") && positions[8].equals("X") || positions[3].equals("X") && positions[6].equals("X"))
-                    return 1;
-            }
-            else if(positions[4].equals("X"))
-            {
-                if(positions[1].equals("X") && positions[7].equals("X") || positions[2].equals("X") && positions[6].equals("X") || positions[3].equals("X") && positions[5].equals("X"))
-                    return 1;
-            }
-            else if (positions[8].equals("X"))
-            {
-                if(positions[2].equals("X") && positions[5].equals("X") || positions[6].equals("X") && positions[7].equals("X"))
-                    return 1;
-            }
+            if (positions[1].equals(check) && positions[2].equals(check) || positions[4].equals(check) && positions[8].equals(check) || positions[3].equals(check) && positions[6].equals(check))
+                return player;
         }
-        else if(player == 2)
+        else if(positions[4].equals(check))
         {
-            if(positions[0].equals("O"))
-            {
-                if (positions[1].equals("O") && positions[2].equals("O") || positions[3].equals("O") && positions[6].equals("O") || positions[4].equals("O") && positions[8].equals("O"))
-                    return 1;
-            }
-            else if(positions[4].equals("O"))
-            {
-                if(positions[1].equals("O") && positions[7].equals("O") || positions[2].equals("O") && positions[6].equals("O") || positions[3].equals("O") && positions[5].equals("O"))
-                    return 1;
-            }
-            else if (positions[8].equals("O"))
-            {
-                if(positions[2].equals("O") && positions[5].equals("O") || positions[6].equals("O") && positions[7].equals("O"))
-                    return 1;
-            }
+            if(positions[1].equals(check) && positions[7].equals(check) || positions[2].equals(check) && positions[6].equals(check) || positions[3].equals(check) && positions[5].equals(check))
+                return player;
+        }
+        else if (positions[8].equals(check))
+        {
+            if(positions[2].equals(check) && positions[5].equals(check) || positions[6].equals(check) && positions[7].equals(check))
+                return player;
         }
 
-        for (int i = 0; i < positions.length; i++)
-        {
-            if(positions[i].equals(" "))
-            {
-                count++;
-            }
-        }
-        if (count == 0)
+        if (!Arrays.asList(positions).contains(" "))
             return 0;
         return -1;
     }
@@ -91,17 +59,14 @@ public class TicTacToe {
         TicTacToe m = new TicTacToe();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        int player = 1;
+        int player;
         int turn = 0;
         int selection;
         boolean fin = false;
         String[] positions = m.resetField();
         while (!fin)
         {
-            if (turn%2==0)
-                player = 1;
-            else
-                player = 2;
+            player = turn%2==0? 1: 2;
 
             m.printField(positions, player);
             selection = Integer.parseInt(br.readLine());

@@ -53,7 +53,6 @@ public class JuegoAhorcado {
 
         boolean endGame = true;
         boolean startGame = false;
-        boolean letterAlreadyGuessed;
 
         System.out.println("Escriba la palabra secreta");
         String palabraSecreta = br.readLine().toLowerCase();
