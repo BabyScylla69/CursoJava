@@ -6,10 +6,11 @@ public class Gallina extends Animal{
     public Gallina(int peso, String sonido, int numeroHuevos) {
         super(peso, sonido);
         this.numeroHuevos = numeroHuevos;
+        this.sonido = sonido;
     }
 
     @Override
     public void comunicarse() {
-        super.comunicarse();
+        System.out.println("La gallina hace " + sonido);
     }
 }

@@ -5,10 +5,11 @@ public class Cerdo extends Animal{
     public Cerdo(int peso, String sonido, int kilosCarne) {
         super(peso, sonido);
         this.kilosCarne = kilosCarne;
+        this.sonido = sonido;
     }
 
     @Override
     public void comunicarse() {
-        super.comunicarse();
+        System.out.println("El cerdo hace " + sonido);
     }
 }

@@ -1,6 +1,6 @@
 package OrientacionAObjetos;
 
-public class Animal {
+public abstract class Animal implements IComunicable {
     int peso;
     String sonido;
 
@@ -9,8 +9,5 @@ public class Animal {
         this.sonido = sonido;
     }
 
-    public void comunicarse()
-    {
-        System.out.println(sonido);
-    }
+    public abstract void comunicarse();
 }

@@ -10,6 +10,6 @@ public class Vaca extends Animal{
 
     @Override
     public void comunicarse() {
-        super.comunicarse();
+        System.out.println("La vaca hace " + sonido);
     }
 }
