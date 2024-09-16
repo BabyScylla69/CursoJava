@@ -1,7 +1,9 @@
 package Sobreescritura;
 
-public class Deposito {
-    int alto, ancho, largo;
+import java.util.Objects;
+
+public class Deposito implements Comparable<Deposito>{
+    int alto, ancho, largo, volumen;
 
     public Deposito(int alto, int ancho, int largo) {
         this.alto = alto;
@@ -20,19 +22,24 @@ public class Deposito {
     public int getAlto() {
         return alto;
     }
-    public void setAlto(int alto) {
-        this.alto = alto;
-    }
     public int getAncho() {
         return ancho;
-    }
-    public void setAncho(int ancho) {
-        this.ancho = ancho;
     }
     public int getLargo() {
         return largo;
     }
-    public void setLargo(int largo) {
-        this.largo = largo;
+    public int getVolumen() { return getAlto() * getAncho() * getLargo();}
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(getAlto(), getAncho(), getLargo());
+    }
+
+    @Override
+    public int compareTo(Deposito o) {
+        double volumeThis = this.getAlto() * this.getLargo() * this.getAncho();
+        double volumeOther = o.getAlto() * o.getLargo() * o.getAncho();
+        return Double.compare(volumeThis, volumeOther);
     }
 }
