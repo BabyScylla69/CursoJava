@@ -4,9 +4,9 @@ import java.text.ParseException;
 import java.util.Date;
 
 public class Persona {
-    String dni;
-    String nombre;
-    Date fechaNacimiento;
+    private String dni;
+    private String nombre;
+    private Date fechaNacimiento;
 
     public Persona(String dni, String nombre, Date fechaNacimiento) throws ParseException {
         setDni(dni);
